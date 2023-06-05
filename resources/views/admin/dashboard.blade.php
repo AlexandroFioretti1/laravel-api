@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container text-center">
     <h2 class="fs-4 text-secondary my-4"><a href="{{route('admin.dashboard')}}">
             {{ __('Dashboard') }}
         </a></h2>
