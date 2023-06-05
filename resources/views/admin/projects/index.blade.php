@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -11,13 +11,16 @@
     <div class="row justify-content-center">
         <div class="col">
             <div class="card-header">
-                <h1>last project</h1>
+                <h1>Project Created</h1>
             </div>
             <div class="card-body">
-                <h4>{{$project[0]->name}}</h4>
+                @foreach ($projects as $project)
+                <h4>{{$project->name}}</h4>
+                <p>{{$project->start_date}}</p>
+                @endforeach
+                
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
