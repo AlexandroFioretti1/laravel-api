@@ -11,7 +11,7 @@
                 <p>type: {{$project->type?->name}}</p>
             </div>
             <div class="text-center pt-4">
-                <a class="btn btn-primary  href=" {{route('admin.projects.index')}}" role="button">Go back</a>
+                <a class="btn btn-primary" href=" {{route('admin.projects.index')}}" role="button">Go back</a>
             </div>
         </div>
     </div>
