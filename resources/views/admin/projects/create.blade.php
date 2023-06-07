@@ -6,13 +6,28 @@
     <form action="{{route('admin.projects.store')}}" method="post">
         @csrf
         <div class="mb-3 row ">
-            <label for="name" class="col-4 col-form-label">Add new project: Name</label>
-            <input value="{{old('name')}}" type=" text" class="form-control" name="name" id="name" placeholder="name">
+            <label for="name" class="col-4 col-form-label">
+                <h2 class="text-center">Add new project</h2>
+            </label>
+            <input value="{{old('name')}}" type=" text" class="form-control" name="name" id="name" placeholder="Name">
         </div>
+
+        <div class="mb-3">
+            <label for="type" class="form-label">Type</label>
+            <select class="form-select form-select-lg" name="type_id" id="type_id">
+                <option>Select one</option>
+                @foreach ($types as $type)
+                <option value="{{$type->id}}">{{$type->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+
         <div class="container text-center pb-3">
             <button class="btn btn-primary " type="submit">Submit</button>
             <button class="btn btn-secondary" type="reset">Reset</button>
         </div>
+
     </form>
     <div class="text-center">
         <a class="btn btn-primary " href="{{route('admin.projects.index')}}" role="button">Go back</a>

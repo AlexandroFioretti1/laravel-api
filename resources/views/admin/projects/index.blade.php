@@ -20,6 +20,7 @@
                     <div>
                         <h4>Name: {{$project->name}}</h4>
                         <p>Published: {{$project->start_date}}</p>
+                        <p>Type: {{$project->type?->name}}</p>
                     </div>
                     <div>
                         <a class="btn btn-primary" href="{{route('admin.projects.show', $project->id)}}"><i class="fa-regular fa-eye fa-fw"></i></a>
