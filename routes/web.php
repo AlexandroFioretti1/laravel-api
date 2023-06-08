@@ -4,7 +4,7 @@ use App\Http\Controllers\admin\DashBoardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TechnologyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::middleware(["auth", "verified"])->prefix("admin")->name("admin.")->group(function () {
     Route::get('/', [DashBoardController::class, "index"])->name('dashboard');
     Route::resource('/projects', ProjectController::class);
+    Route::resource('/technologies', TechnologyController::class);
 });
 
 
