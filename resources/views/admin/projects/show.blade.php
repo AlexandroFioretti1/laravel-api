@@ -9,6 +9,11 @@
                 <h3>Project Name: {{$project->name}}</h3>
                 <p>Published: {{$project->start_date}}</p>
                 <p>type: {{$project->type?->name}}</p>
+                <p>technology: </p>
+
+                @foreach($project->technologies as $technology)
+                <p>{{$technology->name}}</p>
+                @endforeach
             </div>
             <div class="text-center pt-4">
                 <a class="btn btn-primary" href=" {{route('admin.projects.index')}}" role="button">Go back</a>

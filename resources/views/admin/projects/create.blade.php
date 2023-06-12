@@ -15,13 +15,24 @@
         <div class="mb-3">
             <label for="type" class="form-label">Type</label>
             <select class="form-select form-select-lg" name="type_id" id="type_id">
-                <option>Select one</option>
+                <option value="">Select one</option>
                 @foreach ($types as $type)
                 <option value="{{$type->id}}">{{$type->name}}</option>
                 @endforeach
             </select>
         </div>
 
+
+        <div>
+            @foreach ($technologies as $technology)
+            <div class="form-check">
+                <label class="form-check-label" for="technology{{$technology->id}}">
+                    {{$technology->name}}
+                    <input class="form-check-input" {{in_array($technology->id,old('technologies',[])) ?"checked" : ""}} type="checkbox" name="technologies[]" value="{{$technology->id}}" id="technology{{$technology->id}}">
+                </label>
+            </div>
+            @endforeach
+        </div>
 
         <div class="container text-center pb-3">
             <button class="btn btn-primary " type="submit">Submit</button>
