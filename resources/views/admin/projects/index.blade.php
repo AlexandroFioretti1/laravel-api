@@ -21,6 +21,10 @@
                         <h4>Name: {{$project->name}}</h4>
                         <p>Published: {{$project->start_date}}</p>
                         <p>Type: {{$project->type?->name}}</p>
+                        <p>Technologies: </p>
+                        @foreach($project->technologies as $technology)
+                        <span>{{$technology->name}}.</span>
+                        @endforeach
                     </div>
                     <div>
                         <a class="btn btn-primary" href="{{route('admin.projects.show', $project->id)}}"><i class="fa-regular fa-eye fa-fw"></i></a>

@@ -11,7 +11,6 @@
             </label>
             <input value="{{old('name')}}" type=" text" class="form-control" name="name" id="name" placeholder="Name">
         </div>
-
         <div class="mb-3">
             <label for="type" class="form-label">Type</label>
             <select class="form-select form-select-lg" name="type_id" id="type_id">
@@ -21,8 +20,6 @@
                 @endforeach
             </select>
         </div>
-
-
         <div>
             @foreach ($technologies as $technology)
             <div class="form-check">
@@ -33,12 +30,10 @@
             </div>
             @endforeach
         </div>
-
         <div class="container text-center pb-3">
             <button class="btn btn-primary " type="submit">Submit</button>
             <button class="btn btn-secondary" type="reset">Reset</button>
         </div>
-
     </form>
     <div class="text-center">
         <a class="btn btn-primary " href="{{route('admin.projects.index')}}" role="button">Go back</a>
