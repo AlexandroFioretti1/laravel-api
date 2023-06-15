@@ -19,6 +19,7 @@
                 <div class="card-body">
                     <div>
                         <h4>Name: {{$project->name}}</h4>
+                        <img class="card-img " src="{{asset('storage/'.$project->screenshot)}}" alt="">
                         <p>Published: {{$project->start_date}}</p>
                         <p>Type: {{$project->type?->name}}</p>
                         <p>Technologies: </p>

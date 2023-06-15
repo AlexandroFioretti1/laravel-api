@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Technology;
 use App\Models\Type;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -30,6 +31,7 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
+
         return view('admin.projects.create', compact('types', 'technologies'));
     }
 
@@ -43,10 +45,15 @@ class ProjectController extends Controller
     {
         $val_data = $request->validated();
         $val_data["start_date"] = date('Y-m-d');
+        if ($request->hasFile('screenshot')) {
+            $img_path = Storage::put('uploads/', $request->screenshot);
+            $val_data['screenshot'] = $img_path;
+        }
         $newProject =  Project::create($val_data);
         if ($request->technologies) {
             $newProject->technologies()->attach($request->technologies);
         }
+
         return to_route('admin.projects.index')->with('message', "$request->name insert");
     }
 
@@ -85,6 +92,13 @@ class ProjectController extends Controller
     {
 
         $val_data = $request->validated();
+        if ($request->hasFile('screenshot')) {
+            if ($project->screenshot) {
+                Storage::delete($project->screenshot);
+            }
+            $img_path = Storage::put('uploads', $request->screenshot);
+            $val_data['screenshot'] = $img_path;
+        }
         $project->update($val_data);
         if ($request->technologies) {
             $project->technologies()->sync($request->technologies);
@@ -100,6 +114,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $project->technologies()->sync([]);
+        if ($project->screenshot) {
+            Storage::delete($project->screenshot);
+        }
         $project->delete();
         return to_route('admin.projects.index');
     }

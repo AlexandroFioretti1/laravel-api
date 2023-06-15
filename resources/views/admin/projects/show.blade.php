@@ -7,10 +7,10 @@
         <div class="col">
             <div class="card">
                 <h3>Project Name: {{$project->name}}</h3>
+                <img src="{{asset('storage/'.$project->screenshot)}}" alt="">
                 <p>Published: {{$project->start_date}}</p>
                 <p>type: {{$project->type?->name}}</p>
                 <p>technology: </p>
-
                 @foreach($project->technologies as $technology)
                 <p>{{$technology->name}}</p>
                 @endforeach

@@ -1,9 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul class="list-unstyled">
+        @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
 
+    
+</div>
+@endif
 <div class="container p-4">
-    <form action="{{route('admin.projects.store')}}" method="post">
+    <form action="{{route('admin.projects.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3 row ">
             <label for="name" class="col-4 col-form-label">
@@ -20,6 +30,13 @@
                 @endforeach
             </select>
         </div>
+
+        <div class="mb-3">
+            <label for="screenshot" class="form-label">Image</label>
+            <input type="file" class="form-control" name="screenshot" id="screenshot" aria-describedby="helpId" placeholder="Add Image">
+            <small id="helpId" class="form-text text-muted"></small>
+        </div>
+
         <div>
             @foreach ($technologies as $technology)
             <div class="form-check">

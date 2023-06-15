@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('start_date');
+            $table->string('screenshot');
             $table->timestamps();
         });
     }

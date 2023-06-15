@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <form action="{{route('admin.projects.update', $project->id)}}" method="post">
+    <form action="{{route('admin.projects.update', $project->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="mb-3 row ">
@@ -19,13 +19,19 @@
                 @endforeach
             </select>
         </div>
+
+        <div class="mb-3">
+            <label for="screenshot" class="form-label">Image</label>
+            <input type="file" class="form-control" name="screenshot" id="screenshot" aria-describedby="helpId" placeholder="Add Image">
+            <small id="helpId" class="form-text text-muted"></small>
+        </div>
+
         <div>
             @foreach ($technologies as $technology)
             <div class="form-check">
                 <label class="form-check-label" for="technology{{$technology->id}}">
                     {{$technology->name}}
                     @if ($errors->any())
-
                     <input class="form-check-input" type="checkbox" name="technologies[]" value="{{$technology->id}}" id="technology{{$technology->id}}" {{in_array($technology->id, old('technologies', [])) ? 'checked' : ''}}>
                     @else
                     <input class="form-check-input" type="checkbox" name="technologies[]" value="{{$technology->id}}" id="technology{{$technology->id}}" {{$project->technologies->has($technology->id) ? 'checked' : ''}}>
@@ -34,6 +40,7 @@
             </div>
             @endforeach
         </div>
+
         <div class="container text-center pb-3">
             <button class="btn btn-primary " type="submit">Submit</button>
             <button class="btn btn-secondary" type="reset">Reset</button>
